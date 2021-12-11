@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:mpes/controller/products_controller.dart';
 import 'package:mpes/view/shared/components/constants.dart';
 
 class Categories extends StatefulWidget {
@@ -11,6 +13,7 @@ class Categories extends StatefulWidget {
 class _CategoriesState extends State<Categories> {
   List<String> categories = ["Furniture", "Clothes", "Food", "Cars"];
   int catIndex = 0;
+  final ProductsController productsController = Get.put(ProductsController());
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -26,9 +29,7 @@ class _CategoriesState extends State<Categories> {
   Widget buildCategory(int index) {
     return GestureDetector(
       onTap: () {
-        setState(() {
-          catIndex = index;
-        });
+        productsController.toggleGrid();
       },
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 23),

@@ -41,10 +41,11 @@ class Loginback extends StatelessWidget {
                       style: TextStyle(fontWeight: FontWeight.bold),
                     ),
                     SizedBox(height: size.height * 0.02),
-                    SvgPicture.asset(
+                    /*SvgPicture.asset(
                       "assets/icons/login.svg",
                       height: size.height * 0.35,
-                    ),
+                    ),*/
+                    Image.asset('assets/images/welcome.jpg'),
                     Inputbox(
                       hintText: "Your Email",
                       onChanged: (value) {},

@@ -28,8 +28,7 @@ class Productbuilder extends StatelessWidget {
               child: Image.asset(products[0].image),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 52),
+          Center(
             child: Text(
               product.title,
               style: TextStyle(
@@ -37,8 +36,7 @@ class Productbuilder extends StatelessWidget {
               ),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 52),
+          Center(
             child: Text(
               "\$${product.price}",
               style: TextStyle(

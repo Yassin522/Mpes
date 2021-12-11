@@ -1,12 +1,15 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
+import 'package:mpes/controller/products_controller.dart';
 import 'package:mpes/view/layout/home_layout.dart';
 import 'package:mpes/view/modules/home/body.dart';
 import 'package:mpes/view/shared/components/constants.dart';
+import 'package:mpes/view/shared/components/detailscomp/product_counter.dart';
 
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -19,6 +22,12 @@ class HomeScreen extends StatelessWidget {
             onPressed: () {
               Navigator.pop(context);
             },
+          ),
+          title: Center(
+            child: Text(
+              "MPES Shop",
+              style: TextStyle(color: Colors.black),
+            ),
           ),
           actions: [
             IconButton(
