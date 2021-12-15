@@ -56,7 +56,7 @@ class Loginback extends StatelessWidget {
                         onChanged: (String vlue) {},
                         validator: (value) {
                           if (value!.isEmpty) {
-                            return 'paswword must not be empty';
+                            return 'password must not be empty';
                           }
                           return null;
                         },
@@ -78,10 +78,20 @@ class Loginback extends StatelessWidget {
                       text: "LOGIN",
                       press: () {
                         if (formKey.currentState!.validate()) {
-                          Navigator.push(
-                            context,
+                          Navigator.of(context).push(
                             MaterialPageRoute(
                               builder: (context) => HomeScreen(),
+                            ),
+                          );
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text("Successfully logged in"),
+                            ),
+                          );
+                        } else {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text("Invalid username or password"),
                             ),
                           );
                         }

@@ -2,18 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:mpes/view/shared/components/constants.dart';
 
 class Product {
-  final String image, title, description;
+  final String image, title, description, expired;
   final int price, size, id;
   final Color color;
-  Product({
-    required this.id,
-    required this.image,
-    required this.title,
-    required this.price,
-    required this.description,
-    required this.size,
-    required this.color,
-  });
+
+  Product(
+      {required this.id,
+      required this.image,
+      required this.title,
+      required this.price,
+      required this.description,
+      required this.size,
+      required this.color,
+      required this.expired});
 }
 
 List<Product> products = [
@@ -25,6 +26,7 @@ List<Product> products = [
     description: "This is Furniture 1",
     size: 12,
     color: kPrimaryColor,
+    expired: "1/1/2022",
   ),
   Product(
     id: 2,
@@ -34,6 +36,7 @@ List<Product> products = [
     description: "This is Furniture 2",
     size: 12,
     color: kPrimaryColor,
+    expired: "1/1/2022",
   ),
   Product(
     id: 3,
@@ -43,6 +46,7 @@ List<Product> products = [
     description: "This is Furniture 1",
     size: 12,
     color: kPrimaryColor,
+    expired: "1/1/2022",
   ),
   Product(
     id: 4,
@@ -52,6 +56,7 @@ List<Product> products = [
     description: "This is Furniture 3",
     size: 12,
     color: kPrimaryColor,
+    expired: "1/1/2022",
   ),
   Product(
     id: 5,
@@ -61,6 +66,7 @@ List<Product> products = [
     description: "This is Furniture 4",
     size: 12,
     color: kPrimaryColor,
+    expired: "1/1/2022",
   ),
   Product(
     id: 6,
@@ -70,5 +76,6 @@ List<Product> products = [
     description: "This is Furniture 5",
     size: 12,
     color: kPrimaryColor,
+    expired: "1/1/2022",
   ),
 ];

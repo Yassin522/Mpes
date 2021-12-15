@@ -23,7 +23,14 @@ class DetailsTitle extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                 ),
           ),
-          SizedBox(height: 5),
+          Text(
+            product.expired,
+            style: Theme.of(context).textTheme.headline6!.copyWith(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                ),
+          ),
+          //  SizedBox(height: 5),
           Row(
             children: <Widget>[
               RichText(

@@ -23,41 +23,43 @@ class Body extends StatelessWidget {
           height: 15,
         ),
         Expanded(
-          child: productsController.loading.value
+          child: /*productsController.loading.value
               ? Center(child: CircularProgressIndicator())
               : products.isEmpty
                   ? Center(
                       child: Text("No products found"),
                     )
-                  : Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 28),
-                      child: productsController.showGrid.value
-                          ? GridView.builder(
-                              itemCount: products.length,
-                              gridDelegate:
-                                  SliverGridDelegateWithFixedCrossAxisCount(
-                                crossAxisCount: 2,
-                                mainAxisSpacing: 28,
-                                childAspectRatio: 0.75,
-                                crossAxisSpacing: 28,
-                              ),
-                              itemBuilder: (context, index) => Productbuilder(
-                                product: products[index],
-                                press: () {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => DetailsScreen(
-                                        product: products[index],
-                                      ),
-                                    ),
-                                  );
-                                },
-                              ),
-                            )
-                          : Center(
+                  :*/
+              Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 28),
+            child: /*productsController.showGrid.value
+                          ?*/
+                GridView.builder(
+              itemCount: products.length,
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                mainAxisSpacing: 28,
+                childAspectRatio: 0.75,
+                crossAxisSpacing: 28,
+              ),
+              itemBuilder: (context, index) => Productbuilder(
+                product: products[index],
+                press: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => DetailsScreen(
+                        product: products[index],
+                      ),
+                    ),
+                  );
+                },
+              ),
+            ),
+            /*: Center(
                               child: Text("No products found"),
-                            )),
+                            )*/
+          ),
         ),
       ],
     );

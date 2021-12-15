@@ -16,6 +16,7 @@ class ProductsController extends GetxController {
   loadProductsFromRepo() async {
     loading(true);
     products = await productsRepository.loadProductsFromApi();
+    products = products;
     loading(false);
   }
 

@@ -2,11 +2,13 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:like_button/like_button.dart';
 import 'package:mpes/view/models/Products.dart';
 import 'package:mpes/view/shared/components/constants.dart';
 import 'package:mpes/view/shared/components/detailscomp/like_button.dart';
 import 'package:mpes/view/shared/components/detailscomp/product_counter.dart';
 import 'package:mpes/view/shared/components/detailscomp/product_title_deatils.dart';
+import 'package:mpes/view/shared/components/input_box.dart';
 
 class DetailsBody extends StatelessWidget {
   final Product product;
@@ -23,7 +25,7 @@ class DetailsBody extends StatelessWidget {
             child: Stack(
               children: <Widget>[
                 Container(
-                  margin: EdgeInsets.only(top: size.height * 0.3),
+                  margin: EdgeInsets.only(top: size.height * 0.33),
                   padding: EdgeInsets.only(
                     top: size.height * 0.14,
                     left: 22,
@@ -37,6 +39,7 @@ class DetailsBody extends StatelessWidget {
                       topRight: Radius.circular(25),
                     ),
                   ),
+
                   child: Column(
                     children: <Widget>[
                       Row(
@@ -50,7 +53,34 @@ class DetailsBody extends StatelessWidget {
                       SizedBox(
                         height: 23,
                       ),
-                      LikeButton(),
+                      Row(
+                        children: <Widget>[
+                          ProductCounter(),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 90),
+                            child: LikeButton(
+                              likeCount: 1,
+                              size: 35,
+                              bubblesColor: BubblesColor(
+                                dotPrimaryColor: kPrimaryColor,
+                                dotSecondaryColor: kPrimaryLightColor,
+                              ),
+                              circleColor: CircleColor(
+                                start: kPrimaryColor,
+                                end: kPrimaryLightColor,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      Inputbox(
+                        hintText: "Write Comment",
+                        icon: Icons.comment,
+                        onChanged: (value) {},
+                      ),
                     ],
                   ),
                 ),

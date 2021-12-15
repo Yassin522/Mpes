@@ -30,7 +30,8 @@ dependencies:
   get: ^4.5.1
   get_storage: ^2.0.3
   git: ^2.0.0
-  http: ^0.13.4 
+  http: ^0.13.4
+  like_button: ^2.0.4 
   line_awesome_flutter: ^2.0.0
 
 dev_dependencies:
@@ -51,6 +52,7 @@ flutter:
   assets:
     - assets/images/
     - assets/icons/
+
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
   # For details regarding adding assets from package dependencies, see

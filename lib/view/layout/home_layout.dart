@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mpes/view/modules/addproduct/add_product.dart';
 import 'package:mpes/view/modules/profile/profile_screen.dart';
 import 'package:mpes/view/shared/components/constants.dart';
 import 'package:mpes/view/shared/components/constants.dart';
@@ -36,6 +37,15 @@ class _HomeLayoutState extends State<HomeLayout> {
             context,
             MaterialPageRoute(
               builder: (context) => ProfileScreen(),
+            ),
+          );
+        }
+
+         if (currentIndex == 1) {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => AddProduct(),
             ),
           );
         }

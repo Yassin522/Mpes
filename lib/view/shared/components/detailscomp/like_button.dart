@@ -2,11 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:mpes/view/shared/components/detailscomp/product_counter.dart';
 
-class LikeButton extends StatelessWidget {
-  const LikeButton({
-    Key? key,
-  }) : super(key: key);
-
+class LikeButtonn extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
