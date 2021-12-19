@@ -53,7 +53,9 @@ class Loginback extends StatelessWidget {
                     ),
                     TextFieldContainer(
                       child: TextFormField(
-                        onChanged: (String vlue) {},
+                        onChanged: (String value) {
+                            
+                        },
                         validator: (value) {
                           if (value!.isEmpty) {
                             return 'password must not be empty';

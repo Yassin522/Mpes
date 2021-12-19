@@ -1,20 +1,27 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
+import 'package:mpes/api.dart';
 import 'package:mpes/view/modules/home/home_screen.dart';
 import 'package:mpes/view/modules/login/login_screen.dart';
 import 'package:mpes/view/modules/signup/signup_back.dart';
+import 'package:mpes/view/modules/signup/signup_controller.dart';
 import 'package:mpes/view/shared/components/already_have_account.dart';
 import 'package:mpes/view/shared/components/constants.dart';
 import 'package:mpes/view/shared/components/input_box.dart';
 import 'package:mpes/view/shared/components/material_button.dart';
 import 'package:mpes/view/shared/components/text_field_container.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SignUp extends StatelessWidget {
-  var formKey = GlobalKey<FormState>();
-
+  SignupController controller = Get.put(SignupController());
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    var formKey = GlobalKey<FormState>();
     return Scaffold(
       body: Body(
         child: Center(
@@ -36,7 +43,7 @@ class SignUp extends StatelessWidget {
                   ),
                   TextFieldContainer(
                     child: TextFormField(
-                      onChanged: (String vlue) {},
+                      onChanged: (String value) {},
                       validator: (value) {
                         if (value!.isEmpty) {
                           return 'Username must not be empty';
@@ -59,7 +66,7 @@ class SignUp extends StatelessWidget {
                   ),
                   TextFieldContainer(
                     child: TextFormField(
-                      onChanged: (String vlue) {},
+                      onChanged: (String value) {},
                       validator: (value) {
                         if (value!.isEmpty) {
                           return 'Email must not be empty';
@@ -104,23 +111,17 @@ class SignUp extends StatelessWidget {
                     ),
                   ),
                   Materialbutton(
-                    text: "SIGNUP",
-                    color: kPrimaryColor,
-                    press: () {
-                      if (formKey.currentState!.validate()) {
-                        Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (context) => HomeScreen(),
-                          ),
-                        );
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
-                            content: Text("Successfully Sign in"),
-                          ),
-                        );
+                      text: "Create account",
+                      color: kPrimaryColor,
+                      press: () {
+                        if (formKey.currentState!.validate()) {
+                          OnClickRegister();
+                        }
                       }
-                    },
-                  ),
+
+                      /* () {
+                      */
+                      ),
                   CheckAlreadyHaveAccount(
                     login: false,
                     press: () {
@@ -139,5 +140,17 @@ class SignUp extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  void OnClickRegister() async {
+    EasyLoading.show(status: 'loading...');
+    await controller.registerOnclick();
+    if (controller.signupStatus) {
+      EasyLoading.showSuccess(controller.message);
+      Get.offNamed('/Login');
+    } else {
+      EasyLoading.showError(controller.message,
+          duration: Duration(seconds: 10), dismissOnTap: true);
+    }
   }
 }
