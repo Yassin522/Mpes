@@ -1,19 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mpes/controller/products_controller.dart';
+import 'package:mpes/view/modules/home/home_controller.dart';
+import 'package:mpes/view/modules/home/home_service.dart';
 import 'package:mpes/view/shared/components/constants.dart';
 
-class Categories extends StatefulWidget {
-  const Categories({Key? key}) : super(key: key);
+class Categories extends StatelessWidget {
+  final List<String> categories = [
+    "All",
+    "Furniture",
+    "Fruite",
+    "Food",
+    "Meat"
+  ];
+  final int catIndex = 0;
+  final HomeController _homeController = Get.find();
+  HomeService _homeService = HomeService();
 
-  @override
-  _CategoriesState createState() => _CategoriesState();
-}
-
-class _CategoriesState extends State<Categories> {
-  List<String> categories = ["Furniture", "Clothes", "Food", "Cars"];
-  int catIndex = 0;
-  final ProductsController productsController = Get.put(ProductsController());
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -29,7 +32,7 @@ class _CategoriesState extends State<Categories> {
   Widget buildCategory(int index) {
     return GestureDetector(
       onTap: () {
-        productsController.toggleGrid();
+        _homeController.toggleGrid();
       },
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 23),

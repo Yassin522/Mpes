@@ -25,7 +25,7 @@ void main() {
           binding: WelcomeBinding()),
       GetPage(
           name: '/Login', page: () => LoginScreen(), binding: LoginBinding()),
-      GetPage(name: '/Signup', page: () => SignUp(), binding: SignupBinding()),
+      GetPage(name: '/SignUp', page: () => SignUp(), binding: SignupBinding()),
       GetPage(
           name: '/Profile',
           page: () => ProfileScreen(),

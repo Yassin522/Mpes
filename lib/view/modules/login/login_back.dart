@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 import 'package:mpes/view/modules/home/home_screen.dart';
+import 'package:mpes/view/modules/login/login_controller.dart';
 import 'package:mpes/view/modules/signup/signup_screen.dart';
 import 'package:mpes/view/shared/components/already_have_account.dart';
 import 'package:mpes/view/shared/components/constants.dart';
@@ -10,6 +13,7 @@ import 'package:mpes/view/shared/components/text_field_container.dart';
 
 // ignore: must_be_immutable
 class Loginback extends StatelessWidget {
+  LoginController controller = Get.find();
   var formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
@@ -24,12 +28,6 @@ class Loginback extends StatelessWidget {
             child: Image.asset("assets/images/main_top.png"),
             width: size.width * 0.3,
           ),
-          /*Positioned(
-            bottom: 0,
-            right: 0,
-            child: Image.asset("assets/images/login_bottom.png"),
-            width: size.width * 0.4,
-          ),*/
           Center(
             child: SingleChildScrollView(
               child: Form(
@@ -41,20 +39,18 @@ class Loginback extends StatelessWidget {
                       style: TextStyle(fontWeight: FontWeight.bold),
                     ),
                     SizedBox(height: size.height * 0.02),
-                    /*SvgPicture.asset(
-                      "assets/icons/login.svg",
-                      height: size.height * 0.35,
-                    ),*/
                     Image.asset('assets/images/welcome.jpg'),
                     Inputbox(
                       hintText: "Your Email",
-                      onChanged: (value) {},
+                      onChanged: (String value) {
+                        controller.email = value;
+                      },
                       icon: Icons.person,
                     ),
                     TextFieldContainer(
                       child: TextFormField(
                         onChanged: (String value) {
-                            
+                          controller.password = value;
                         },
                         validator: (value) {
                           if (value!.isEmpty) {
@@ -80,11 +76,7 @@ class Loginback extends StatelessWidget {
                       text: "LOGIN",
                       press: () {
                         if (formKey.currentState!.validate()) {
-                          Navigator.of(context).push(
-                            MaterialPageRoute(
-                              builder: (context) => HomeScreen(),
-                            ),
-                          );
+                          OnClickLogin();
                           ScaffoldMessenger.of(context).showSnackBar(
                             SnackBar(
                               content: Text("Successfully logged in"),
@@ -118,5 +110,18 @@ class Loginback extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  void OnClickLogin() async {
+    EasyLoading.show(status: 'loading...');
+    await controller.loginOnclick();
+    if (controller.loginStatus) {
+      EasyLoading.showSuccess(controller.message);
+      print('success');
+      Get.offAllNamed('/Home');
+    } else {
+      EasyLoading.showError(controller.message,
+          duration: Duration(seconds: 2), dismissOnTap: true);
+    }
   }
 }

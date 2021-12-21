@@ -231,7 +231,7 @@ class _AddBodyState extends State<AddBody> {
                               height: 80,
                               width: 200,
                               child: Image(
-                                image: FileImage(File(addproductController
+                           image: FileImage(File(addproductController
                                     .productPicPath.value)) as ImageProvider,
                               ),
                             ),

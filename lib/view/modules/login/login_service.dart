@@ -1,32 +1,31 @@
 import 'dart:convert';
-
 import 'package:http/http.dart' as http;
 import 'package:mpes/config/config_server.dart';
 import 'package:mpes/view/models/user.dart';
 
-class SignupService {
+class LoginService {
   var message;
-  var url = Uri.parse(ServerConfig.domainNameServer + ServerConfig.register);
+  var url = Uri.parse(ServerConfig.domainNameServer + ServerConfig.login);
 
-  Future<bool> register(User user) async {
+  Future<bool> login(User user) async {
+    print(user.email);
+    print(user.password);
     var response = await http.post(
       url,
       headers: {},
-      body: {
-        'user_name': user.username,
-        'email_app': user.email,
-        'password': user.password
-      },
+      body: {'email_app': user.email, 'password': user.password},
     );
+
     print(response.body);
 
-    if (response.statusCode >= 200) {
+    if (response.statusCode == 200) {
       var jsonResponse = jsonDecode(response.body);
-      message = 'success signup';
+      message = 'log in success';
       return true;
     } else {
       var jsonResponse = jsonDecode(response.body);
-      message = 'error info';
+      print(jsonResponse['error']);
+      message = 'server error';
       return false;
     }
   }

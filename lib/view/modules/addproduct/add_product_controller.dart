@@ -8,4 +8,5 @@ class AddproductController extends GetxController {
     productPicPath.value = path;
     isProductPicPathset.value = true;
   }
+  
 }
