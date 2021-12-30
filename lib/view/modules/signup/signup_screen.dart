@@ -47,7 +47,7 @@ class SignUp extends StatelessWidget {
                       },
                       validator: (value) {
                         if (value!.isEmpty) {
-                          return 'Username must not be empty';
+                      return 'Username must not be empty';
                         }
                         return null;
                       },

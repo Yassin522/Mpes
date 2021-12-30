@@ -2,8 +2,10 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 import 'package:like_button/like_button.dart';
 import 'package:mpes/view/models/Products.dart';
+import 'package:mpes/view/modules/home/home_controller.dart';
 import 'package:mpes/view/shared/components/constants.dart';
 import 'package:mpes/view/shared/components/detailscomp/like_button.dart';
 import 'package:mpes/view/shared/components/detailscomp/product_counter.dart';
@@ -11,9 +13,9 @@ import 'package:mpes/view/shared/components/detailscomp/product_title_deatils.da
 import 'package:mpes/view/shared/components/input_box.dart';
 
 class DetailsBody extends StatelessWidget {
-  final Product product;
-  const DetailsBody({Key? key, required this.product}) : super(key: key);
-
+  final product;
+  DetailsBody({Key? key, required this.product}) : super(key: key);
+  HomeController homeController = Get.find();
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -45,7 +47,7 @@ class DetailsBody extends StatelessWidget {
                       Row(
                         children: <Widget>[
                           Text(
-                            product.description,
+                            product["type"],
                             style: TextStyle(height: 1.8),
                           ),
                         ],
@@ -55,21 +57,27 @@ class DetailsBody extends StatelessWidget {
                       ),
                       Row(
                         children: <Widget>[
-                          ProductCounter(),
-                          Padding(
-                            padding: const EdgeInsets.only(left: 90),
-                            child: LikeButton(
-                              likeCount: 1,
-                              size: 35,
-                              bubblesColor: BubblesColor(
-                                dotPrimaryColor: kPrimaryColor,
-                                dotSecondaryColor: kPrimaryLightColor,
+                          ProductCounter(
+                            product: product,
+                          ),
+                          Obx(() {
+                            return Padding(
+                              padding: const EdgeInsets.only(left: 90),
+                              child: LikeButton(
+                                onTap: OnClickDecrease,
+                                likeCount: product["num_likes"],
+                                size: 35,
+                                bubblesColor: BubblesColor(
+                                  dotPrimaryColor: kPrimaryColor,
+                                  dotSecondaryColor: kPrimaryLightColor,
+                                ),
+                                circleColor: CircleColor(
+                                  start: kPrimaryColor,
+                                  end: kPrimaryLightColor,
+                                ),
                               ),
-                              circleColor: CircleColor(
-                                start: kPrimaryColor,
-                                end: kPrimaryLightColor,
-                              ),
-                            ),
+                            );
+                          },
                           ),
                         ],
                       ),
@@ -91,5 +99,19 @@ class DetailsBody extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  Future<bool?> OnClickDecrease(bool isLiked) async {
+    print("sssss");
+    int id = product["id"];
+    print(id);
+    homeController.addLikeOnClick(id);
+    if (homeController.addStatus) {
+      print('success');
+      return !isLiked;
+    } else {
+      print("error");
+      return !isLiked;
+    }
   }
 }

@@ -2,6 +2,7 @@ import 'package:filter_list/filter_list.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mpes/view/modules/home/home_screen.dart';
+import 'package:mpes/view/modules/search/search_body.dart';
 import 'package:mpes/view/modules/search/search_controller.dart';
 import 'package:mpes/view/shared/components/constants.dart';
 import 'package:mpes/view/shared/components/material_button.dart';
@@ -10,11 +11,12 @@ import 'package:mpes/view/shared/components/text_field_container.dart';
 List<String> defaultList = ['Fruite', 'Meat', 'Clothes', 'Vegetables', 'Food'];
 
 class Search extends StatelessWidget {
-  var controller = Get.put(SearchController());
-  final _basicDetailFormKey = GlobalKey<FormState>();
-  final TextEditingController NameFieldController = TextEditingController();
+  SearchController controller = Get.put(SearchController());
 
-  void openFilterDialog(context) async {
+  final _basicDetailFormKey = GlobalKey<FormState>();
+  // final TextEditingController NameFieldController = TextEditingController();
+
+  /*void openFilterDialog(context) async {
     await FilterListDialog.display<String>(context,
         listData: defaultList,
         selectedListData: controller.getSelectedList(),
@@ -40,7 +42,7 @@ class Search extends StatelessWidget {
           controller.setSelectedList(List<String>.from(list!));
           Navigator.of(context).pop();
         });
-  }
+  }*/
 
   @override
   Widget build(BuildContext context) {
@@ -63,40 +65,57 @@ class Search extends StatelessWidget {
                       SizedBox(height: 100),
                       TextFieldContainer(
                         child: TextFormField(
-                          controller: NameFieldController,
                           keyboardType: TextInputType.name,
-                          onChanged: (String vlue) {},
-                          validator: (value) {
-                            if (NameFieldController.text.isEmpty) {
-                              return 'This field is required';
-                            }
-                            return null;
+                          onChanged: (String value) {
+                            controller.productName = value;
                           },
+                          validator: (value) {},
                           autovalidateMode: AutovalidateMode.onUserInteraction,
                           decoration: InputDecoration(
-                            hintText: "e.g, Potato",
+                            hintText: "e.g, samsung",
                             labelText: "Product Name",
                             floatingLabelBehavior: FloatingLabelBehavior.always,
                             border: InputBorder.none,
                           ),
                         ),
                       ),
-                      Materialbutton(
-                        text: "Choosetype",
-                        press: () {
-                          openFilterDialog(context);
-                        },
-                        color: kPrimaryColor,
+                      TextFieldContainer(
+                        child: TextFormField(
+                          keyboardType: TextInputType.name,
+                          onChanged: (String value) {
+                            controller.productType = value;
+                          },
+                          validator: (value) {},
+                          autovalidateMode: AutovalidateMode.onUserInteraction,
+                          decoration: InputDecoration(
+                            hintText: "e.g, phone",
+                            labelText: "Product Type",
+                            floatingLabelBehavior: FloatingLabelBehavior.always,
+                            border: InputBorder.none,
+                          ),
+                        ),
+                      ),
+                      TextFieldContainer(
+                        child: TextFormField(
+                          keyboardType: TextInputType.name,
+                          onChanged: (String value) {
+                            controller.productExpired = value;
+                          },
+                          validator: (value) {},
+                          autovalidateMode: AutovalidateMode.onUserInteraction,
+                          decoration: InputDecoration(
+                            hintText: "e.g, 2022-02-02",
+                            labelText: "Product Expired Date",
+                            floatingLabelBehavior: FloatingLabelBehavior.always,
+                            border: InputBorder.none,
+                          ),
+                        ),
                       ),
                       Materialbutton(
                         text: "Submit",
                         press: () {
                           if (_basicDetailFormKey.currentState!.validate()) {
-                            Navigator.of(context).push(
-                              MaterialPageRoute(
-                                builder: (context) => HomeScreen(),
-                              ),
-                            );
+                            OnClickExpired(controller.productExpired);
                             ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(
                                 content: Text("Successfully Submitted"),
@@ -121,5 +140,26 @@ class Search extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  void OnClickName(String name) async {
+    await controller.loadSearchByName(name);
+
+    if (controller.searchStatus1) {
+      Get.to(SearcBody());
+    }
+  }
+
+  void OnClickType(String name) async {
+    await controller.loadSearchByType(name);
+    if (controller.searchStatus2) {
+      Get.to(SearcBody());
+    }
+  }
+  void OnClickExpired(String name) async {
+    await controller.loadSearchByExpired(name);
+    if (controller.searchStatus3) {
+      Get.to(SearcBody());
+    }
   }
 }

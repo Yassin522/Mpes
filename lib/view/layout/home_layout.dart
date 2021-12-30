@@ -3,6 +3,8 @@ import 'package:mpes/view/modules/addproduct/add_product.dart';
 import 'package:mpes/view/modules/profile/profile_screen.dart';
 import 'package:mpes/view/shared/components/constants.dart';
 import 'package:mpes/view/shared/components/constants.dart';
+import 'package:fancy_bottom_navigation/fancy_bottom_navigation.dart';
+
 
 class HomeLayout extends StatefulWidget {
   const HomeLayout({
@@ -23,10 +25,10 @@ class _HomeLayoutState extends State<HomeLayout> {
 
   @override
   Widget build(BuildContext context) {
-    return BottomNavigationBar(
-      backgroundColor: kPrimaryLightColor,
-      type: BottomNavigationBarType.fixed,
+    return (
+      
       currentIndex: currentIndex,
+      
       onTap: (index) {
         setState(() {
           currentIndex = index;

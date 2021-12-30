@@ -5,8 +5,8 @@ import 'package:mpes/view/modules/home/home_controller.dart';
 import 'package:mpes/view/shared/components/constants.dart';
 
 class Productbuilder extends StatelessWidget {
-  final HomeController _homeController = Get.find();
-  final Product product;
+  final HomeController homeController = Get.find();
+  final product;
   final Function press;
   Productbuilder({
     Key? key,
@@ -26,17 +26,19 @@ class Productbuilder extends StatelessWidget {
               padding: EdgeInsets.all(10),
               decoration: BoxDecoration(
                 image: DecorationImage(
-                  image: NetworkImage(product.image),
+                  image: AssetImage(
+                    'assets/images/logo.png',
+                  ),
                   fit: BoxFit.fill,
                 ),
-                color: product.color,
+                color: kPrimaryColor,
                 borderRadius: BorderRadius.circular(16),
               ),
             ),
           ),
           Center(
             child: Text(
-              product.title,
+              product["product_name"],
               style: TextStyle(
                 color: kTextLightColor,
               ),
@@ -44,7 +46,7 @@ class Productbuilder extends StatelessWidget {
           ),
           Center(
             child: Text(
-              "\$${product.price}",
+              "\$${product["price"]}",
               style: TextStyle(
                 fontWeight: FontWeight.bold,
               ),

@@ -24,6 +24,7 @@ dependencies:
   animated_theme_switcher: ^2.0.5
   cupertino_icons: ^1.0.2
   expandable: ^5.0.1
+  fancy_bottom_navigation: ^0.3.3
   filter_list: ^1.0.0
   flutter:
     sdk: flutter
@@ -33,10 +34,13 @@ dependencies:
   get: ^4.5.1
   get_storage: ^2.0.3
   git: ^2.0.0
+  grouped_buttons: ^1.0.4
   http: ^0.13.4
   image_picker: ^0.8.4+4
   like_button: ^2.0.4
   line_awesome_flutter: ^2.0.0
+  loading: ^1.0.2
+  progress_dialog: ^1.2.4
   shared_preferences: ^2.0.11
 
 dev_dependencies:

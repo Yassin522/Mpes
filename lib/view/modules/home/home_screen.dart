@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart';
-import 'package:mpes/controller/products_controller.dart';
 import 'package:mpes/view/layout/home_layout.dart';
 import 'package:mpes/view/modules/home/body.dart';
 import 'package:mpes/view/modules/home/home_controller.dart';
@@ -15,7 +14,10 @@ import 'package:mpes/view/shared/components/detailscomp/product_counter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class HomeScreen extends StatelessWidget {
-  final HomeController _homeController = Get.put(HomeController());
+  
+
+   final HomeController homeController = Get.find();
+   
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -51,7 +53,7 @@ class HomeScreen extends StatelessWidget {
           ],
         ),
         bottomNavigationBar: HomeLayout(),
-        body: Body(),
+        body:  Body(),
       ),
     );
   }

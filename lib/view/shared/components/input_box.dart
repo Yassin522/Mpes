@@ -19,7 +19,7 @@ class Inputbox extends StatelessWidget {
     var kPrimaryColor2 = kPrimaryColor;
     return TextFieldContainer(
       child: TextFormField(
-        obscureText: true,
+      
         onChanged: onChanged,
         validator: (value) {
           if (value!.isEmpty) {

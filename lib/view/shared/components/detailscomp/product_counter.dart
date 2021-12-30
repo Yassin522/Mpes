@@ -1,15 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:mpes/view/shared/components/constants.dart';
 
-class ProductCounter extends StatefulWidget {
-  const ProductCounter({Key? key}) : super(key: key);
+class ProductCounter extends StatelessWidget {
 
-  @override
-  _ProductCounterState createState() => _ProductCounterState();
-}
+  final product;
 
-class _ProductCounterState extends State<ProductCounter> {
-  int numOfProducts = 1;
+  const ProductCounter({Key? key,required this.product}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -19,11 +16,7 @@ class _ProductCounterState extends State<ProductCounter> {
           height: 32,
           child: FloatingActionButton(
             onPressed: () {
-              if (numOfProducts >= 1) {
-                setState(() {
-                  numOfProducts--;
-                });
-              }
+             
             },
             child: Icon(Icons.remove),
             backgroundColor: kPrimaryColor,
@@ -32,7 +25,7 @@ class _ProductCounterState extends State<ProductCounter> {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 10),
           child: Text(
-            numOfProducts.toString().padLeft(2, "0"),
+            product["amount_products"].toString().padLeft(2, "0"),
             style: Theme.of(context).textTheme.headline6,
           ),
         ),
@@ -41,9 +34,7 @@ class _ProductCounterState extends State<ProductCounter> {
           height: 32,
           child: FloatingActionButton(
             onPressed: () {
-              setState(() {
-                numOfProducts++;
-              });
+           
             },
             child: Icon(Icons.add),
             backgroundColor: kPrimaryColor,

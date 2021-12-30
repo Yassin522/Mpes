@@ -1,23 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:mpes/getx_bindings/add_product_binding.dart';
 import 'package:mpes/getx_bindings/home_binding.dart';
 import 'package:mpes/getx_bindings/login_binding.dart';
 import 'package:mpes/getx_bindings/signup_binding.dart';
+import 'package:mpes/getx_bindings/splash_binding.dart';
 import 'package:mpes/getx_bindings/welcome_binding.dart';
+import 'package:mpes/secure_storage.dart';
 import 'package:mpes/view/modules/addproduct/add_product.dart';
 import 'package:mpes/view/modules/details/details_screen.dart';
 import 'package:mpes/view/modules/home/home_screen.dart';
 import 'package:mpes/view/modules/login/login_screen.dart';
 import 'package:mpes/view/modules/profile/profile_screen.dart';
 import 'package:mpes/view/modules/signup/signup_screen.dart';
+import 'package:mpes/view/modules/splash/spalsh_screen.dart';
 import 'package:mpes/view/modules/welcome/welcome_screen.dart';
 import 'package:mpes/view/shared/components/constants.dart';
 
-void main() {
+void main() async {
+  await GetStorage.init;
   runApp(GetMaterialApp(
-    initialRoute: '/Welcome',
+    initialRoute: '/Home',
     getPages: [
       GetPage(
           name: '/Welcome',
@@ -37,6 +42,7 @@ void main() {
           name: '/Search',
           page: () => AddProduct(),
           binding: AddproductBinding()),
+      GetPage(name: '/Splash', page: () => Splash(), binding: SplashBinding()),
     ],
     builder: EasyLoading.init(),
   ));

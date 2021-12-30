@@ -27,13 +27,13 @@ class ProfileBody extends StatelessWidget {
                     "Username",
                   ),
                   SizedBox(
-                    height: 8,
+                    height: 15,
                   ),
                   textfield(
                     "Email",
                   ),
                   SizedBox(
-                    height: 8,
+                    height: 15,
                   ),
                   textfield(
                     "Password",

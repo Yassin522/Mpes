@@ -3,12 +3,16 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:mpes/view/shared/components/detailscomp/product_counter.dart';
 
 class LikeButtonn extends StatelessWidget {
+  final product;
+  const LikeButtonn({Key? key, required this.product}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: <Widget>[
-        ProductCounter(),
+        ProductCounter(
+          product: product,
+        ),
         Container(
           padding: EdgeInsets.all(8),
           height: 32,

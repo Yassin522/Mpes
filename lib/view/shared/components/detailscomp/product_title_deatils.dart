@@ -7,7 +7,7 @@ class DetailsTitle extends StatelessWidget {
     required this.product,
   }) : super(key: key);
 
-  final Product product;
+  final  product;
 
   @override
   Widget build(BuildContext context) {
@@ -17,14 +17,14 @@ class DetailsTitle extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Text(
-            product.title,
+            product["product_name"],
             style: Theme.of(context).textTheme.headline4!.copyWith(
                   color: Colors.white,
                   fontWeight: FontWeight.bold,
                 ),
           ),
           Text(
-            product.expired,
+           product["expiry_date"],
             style: Theme.of(context).textTheme.headline6!.copyWith(
                   color: Colors.white,
                   fontWeight: FontWeight.bold,
@@ -38,7 +38,7 @@ class DetailsTitle extends StatelessWidget {
                   children: [
                     TextSpan(text: "Price\n"),
                     TextSpan(
-                      text: "\$${product.price}",
+                      text: "\$${product["price"]}",
                       style: Theme.of(context).textTheme.headline4!.copyWith(
                             color: Colors.white,
                             fontWeight: FontWeight.bold,
@@ -50,7 +50,7 @@ class DetailsTitle extends StatelessWidget {
               SizedBox(width: 15),
               Expanded(
                 child: Image.asset(
-                  product.image,
+                    'assets/images/logo.png',
                   fit: BoxFit.fill,
                 ),
               ),

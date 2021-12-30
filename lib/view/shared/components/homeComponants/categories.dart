@@ -1,21 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:mpes/controller/products_controller.dart';
 import 'package:mpes/view/modules/home/home_controller.dart';
 import 'package:mpes/view/modules/home/home_service.dart';
 import 'package:mpes/view/shared/components/constants.dart';
 
 class Categories extends StatelessWidget {
-  final List<String> categories = [
-    "All",
-    "Furniture",
-    "Fruite",
-    "Food",
-    "Meat"
-  ];
-  final int catIndex = 0;
-  final HomeController _homeController = Get.find();
-  HomeService _homeService = HomeService();
+  List<String> categories = ["All", "Furniture", "Fruite", "Food", "Meat"];
+
+  final HomeController homeController = Get.find();
+
+  HomeService homeService = HomeService();
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +18,7 @@ class Categories extends StatelessWidget {
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         itemCount: categories.length,
-        itemBuilder: (context, index) => buildCategory(index),
+        itemBuilder: (context, index) => Obx(() => buildCategory(index)),
       ),
     );
   }
@@ -32,7 +26,8 @@ class Categories extends StatelessWidget {
   Widget buildCategory(int index) {
     return GestureDetector(
       onTap: () {
-        _homeController.toggleGrid();
+        homeController.ChangeCategories(index);
+        print("okk");
       },
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 23),
@@ -43,13 +38,17 @@ class Categories extends StatelessWidget {
               categories[index],
               style: TextStyle(
                 fontWeight: FontWeight.bold,
-                color: catIndex == index ? kTextColor : kTextLightColor,
+                color: homeController.catIndex.value == index
+                    ? kTextColor
+                    : kTextLightColor,
               ),
             ),
             Container(
               height: 2,
               width: 35,
-              color: catIndex == index ? Colors.black : Colors.transparent,
+              color: homeController.catIndex.value == index
+                  ? Colors.black
+                  : Colors.transparent,
               margin: EdgeInsets.only(top: 5),
             ),
           ],
